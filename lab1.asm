@@ -35,28 +35,30 @@ add Al, res1
 mov res1, Al
 
 ;вывод в hex
-mov al, 0B1h
+;mov al, 0FFh
 mov bl, 10h
 div bl
 xor si, si
 cmp al, 10
-jl a1
+jge a1
 add al, '0'
 jmp exit1
-a1: add al, 41h
+a1: sub al, 10 
+add al, 'A'
 exit1: mov stringhex[si], al
-;mov stringhex[si], al
+mov stringhex[si], al
 inc si
-;cmp ah, 0Ah
-;jl a2
+cmp ah, 0Ah
+jge a2
 add ah, '0'
-;jmp exit2
-;a2: add ah, 37h
-;exit2: mov stringhex[si], ah
+jmp exit2
+a2: sub al, 10
+add ah, 37h
+exit2: mov stringhex[si], ah
 mov stringhex[si], ah
 
 ;вывод в dec от младших к старшим изменения в строчке
-mov res1, 0FFh
+;mov res1, 0FFh
 xor ax, ax
 mov al, res1
 mov bl, 0Ah
